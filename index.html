@@ -6,7 +6,6 @@
     <title>My To-Do List</title>
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
     <div class="container">
@@ -14,13 +13,9 @@
         <h1>My To-Do List</h1>
         <p>Organize your day, one task at a time!</p>
 
-        <!-- TO-DO LIST -->
         <form id="todo-form">
-            <input
-                type="text"
-                id="task-input"
-                placeholder="Enter your task"
-            >
+            <input type="text" id="task-input"
+                   placeholder="Enter your task">
             <button type="submit">Add Task</button>
         </form>
 
@@ -28,37 +23,27 @@
 
         <hr>
 
-        <!-- CONTACT FORM -->
         <section class="contact-section">
-
             <h2>Contact Us</h2>
             <p>We would love to hear from you!</p>
 
             <form id="contact-form" novalidate>
 
-                <input
-                    type="text"
-                    id="name"
-                    placeholder="Your Name"
-                >
+                <input type="text" id="name"
+                       placeholder="Your Name">
 
-                <input
-                    type="email"
-                    id="email"
-                    placeholder="Your Email"
-                >
+                <input type="email" id="email"
+                       placeholder="Your Email">
 
-                <textarea
-                    id="message"
-                    placeholder="Your Message"
-                ></textarea>
+                <textarea id="message"
+                          placeholder="Your Message"></textarea>
 
                 <button type="submit">Submit</button>
 
             </form>
 
-            <p id="form-status" role="status" aria-live="polite"></p>
-
+            <p id="form-status" role="status"
+               aria-live="polite"></p>
         </section>
 
     </div>
