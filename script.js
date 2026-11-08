@@ -1,4 +1,5 @@
-/* General Styling */
+/* GENERAL STYLING */
+
 * {
     margin: 0;
     padding: 0;
@@ -15,7 +16,6 @@ body {
     padding: 20px;
 }
 
-/* Main Container */
 .container {
     background: white;
     width: 100%;
@@ -25,7 +25,6 @@ body {
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
 }
 
-/* Heading */
 h1 {
     text-align: center;
     color: #333;
@@ -35,10 +34,11 @@ h1 {
 p {
     text-align: center;
     color: #777;
-    margin-bottom: 25px;
+    margin-bottom: 20px;
 }
 
-/* To-Do Form */
+/* TO-DO FORM */
+
 #todo-form {
     display: flex;
     gap: 10px;
@@ -54,7 +54,6 @@ input {
     font-size: 15px;
 }
 
-/* Buttons */
 button {
     padding: 12px 18px;
     background: #667eea;
@@ -68,7 +67,8 @@ button:hover {
     background: #4c5fd5;
 }
 
-/* Task List */
+/* TASK LIST */
+
 #task-list {
     list-style: none;
 }
@@ -76,7 +76,6 @@ button:hover {
 #task-list li {
     display: flex;
     align-items: center;
-    justify-content: space-between;
     gap: 10px;
     background: #f3f4f8;
     padding: 12px;
@@ -99,7 +98,6 @@ button:hover {
     color: gray;
 }
 
-/* Delete Button */
 .delete-btn {
     background: #e74c3c;
     padding: 8px 12px;
@@ -110,13 +108,15 @@ button:hover {
     background: #c0392b;
 }
 
-/* Divider */
+/* DIVIDER */
+
 hr {
     margin: 30px 0;
     border: 1px solid #eee;
 }
 
-/* Contact Form */
+/* CONTACT FORM */
+
 .contact-section h2 {
     text-align: center;
     color: #333;
@@ -154,8 +154,10 @@ hr {
     text-align: center;
 }
 
-/* Responsive Design */
+/* RESPONSIVE DESIGN */
+
 @media (max-width: 480px) {
+
     .container {
         padding: 20px;
     }
@@ -167,5 +169,6 @@ hr {
     #todo-form button {
         width: 100%;
     }
-}
+
+        }
     
