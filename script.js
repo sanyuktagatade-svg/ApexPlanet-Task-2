@@ -1,171 +1,90 @@
-/* GENERAL STYLING */
+document.addEventListener("DOMContentLoaded", function () {
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+    // TO-DO LIST
 
-body {
-    font-family: Arial, sans-serif;
-    background: linear-gradient(135deg, #667eea, #764ba2);
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-}
+    const todoForm = document.getElementById("todo-form");
+    const taskInput = document.getElementById("task-input");
+    const taskList = document.getElementById("task-list");
 
-.container {
-    background: white;
-    width: 100%;
-    max-width: 500px;
-    padding: 35px;
-    border-radius: 15px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
-}
+    todoForm.addEventListener("submit", function (event) {
+        event.preventDefault();
 
-h1 {
-    text-align: center;
-    color: #333;
-    margin-bottom: 10px;
-}
+        const taskText = taskInput.value.trim();
 
-p {
-    text-align: center;
-    color: #777;
-    margin-bottom: 20px;
-}
+        if (taskText === "") {
+            alert("Please enter a task!");
+            return;
+        }
 
-/* TO-DO FORM */
+        const li = document.createElement("li");
 
-#todo-form {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
-}
+        const checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
 
-input {
-    flex: 1;
-    min-width: 0;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    font-size: 15px;
-}
+        const span = document.createElement("span");
+        span.textContent = taskText;
 
-button {
-    padding: 12px 18px;
-    background: #667eea;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-}
+        checkbox.addEventListener("change", function () {
+            li.classList.toggle("completed", checkbox.checked);
+        });
 
-button:hover {
-    background: #4c5fd5;
-}
+        const deleteButton = document.createElement("button");
+        deleteButton.textContent = "Delete";
+        deleteButton.type = "button";
+        deleteButton.className = "delete-btn";
 
-/* TASK LIST */
+        deleteButton.addEventListener("click", function () {
+            li.remove();
+        });
 
-#task-list {
-    list-style: none;
-}
+        li.appendChild(checkbox);
+        li.appendChild(span);
+        li.appendChild(deleteButton);
 
-#task-list li {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    background: #f3f4f8;
-    padding: 12px;
-    margin-bottom: 10px;
-    border-radius: 6px;
-    overflow-wrap: anywhere;
-}
+        taskList.appendChild(li);
 
-#task-list li input[type="checkbox"] {
-    flex: 0 0 auto;
-    width: auto;
-}
+        taskInput.value = "";
+    });
 
-#task-list li span {
-    flex: 1;
-}
 
-#task-list li.completed span {
-    text-decoration: line-through;
-    color: gray;
-}
+    // CONTACT FORM VALIDATION
 
-.delete-btn {
-    background: #e74c3c;
-    padding: 8px 12px;
-    flex-shrink: 0;
-}
+    const contactForm = document.getElementById("contact-form");
+    const nameInput = document.getElementById("name");
+    const emailInput = document.getElementById("email");
+    const messageInput = document.getElementById("message");
+    const formStatus = document.getElementById("form-status");
 
-.delete-btn:hover {
-    background: #c0392b;
-}
+    contactForm.addEventListener("submit", function (event) {
 
-/* DIVIDER */
+        event.preventDefault();
 
-hr {
-    margin: 30px 0;
-    border: 1px solid #eee;
-}
+        const name = nameInput.value.trim();
+        const email = emailInput.value.trim();
+        const message = messageInput.value.trim();
 
-/* CONTACT FORM */
+        formStatus.textContent = "";
 
-.contact-section h2 {
-    text-align: center;
-    color: #333;
-    margin-bottom: 10px;
-}
+        if (name === "" || email === "" || message === "") {
+            formStatus.textContent = "Please fill in all fields!";
+            formStatus.style.color = "red";
+            return;
+        }
 
-.contact-section form {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-.contact-section input,
-.contact-section textarea {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    font-family: Arial, sans-serif;
-    font-size: 15px;
-}
+        if (!emailPattern.test(email)) {
+            formStatus.textContent = "Please enter a valid email address!";
+            formStatus.style.color = "red";
+            return;
+        }
 
-.contact-section textarea {
-    min-height: 100px;
-    resize: vertical;
-}
+        formStatus.textContent = "Form submitted successfully!";
+        formStatus.style.color = "green";
 
-.contact-section button {
-    width: 100%;
-}
+        contactForm.reset();
 
-#form-status {
-    margin-top: 15px;
-    font-weight: bold;
-    text-align: center;
-}
+    });
 
-/* RESPONSIVE DESIGN */
+});
 
-@media (max-width: 480px) {
-    .container {
-        padding: 20px;
-    }
-
-    #todo-form {
-        flex-direction: column;
-    }
-
-    #todo-form button {
-        width: 100%;
-    }
-}
