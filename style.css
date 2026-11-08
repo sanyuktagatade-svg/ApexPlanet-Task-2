@@ -1,12 +1,13 @@
-// ===============================
+// =================================
 // TO-DO LIST FUNCTIONALITY
-// ===============================
+// =================================
 
-const form = document.getElementById("todo-form");
+const todoForm = document.getElementById("todo-form");
 const taskInput = document.getElementById("task-input");
 const taskList = document.getElementById("task-list");
 
-form.addEventListener("submit", function(event) {
+todoForm.addEventListener("submit", function(event) {
+
     event.preventDefault();
 
     const taskText = taskInput.value.trim();
@@ -18,11 +19,11 @@ form.addEventListener("submit", function(event) {
 
     const li = document.createElement("li");
 
-    // Create checkbox
+    // Checkbox
     const checkbox = document.createElement("input");
     checkbox.type = "checkbox";
 
-    // Create task text
+    // Task text
     const span = document.createElement("span");
     span.textContent = taskText;
 
@@ -31,12 +32,11 @@ form.addEventListener("submit", function(event) {
         li.classList.toggle("completed", checkbox.checked);
     });
 
-    // Create delete button
+    // Delete button
     const deleteButton = document.createElement("button");
     deleteButton.textContent = "Delete";
     deleteButton.className = "delete-btn";
 
-    // Delete task
     deleteButton.addEventListener("click", function() {
         li.remove();
     });
@@ -48,12 +48,13 @@ form.addEventListener("submit", function(event) {
     taskList.appendChild(li);
 
     taskInput.value = "";
+
 });
 
 
-// ===============================
+// =================================
 // CONTACT FORM VALIDATION
-// ===============================
+// =================================
 
 const contactForm = document.getElementById("contact-form");
 const nameInput = document.getElementById("name");
@@ -62,35 +63,41 @@ const messageInput = document.getElementById("message");
 const formStatus = document.getElementById("form-status");
 
 contactForm.addEventListener("submit", function(event) {
+
     event.preventDefault();
 
     const name = nameInput.value.trim();
     const email = emailInput.value.trim();
     const message = messageInput.value.trim();
 
-    // Check empty fields
+    // Check required fields
     if (name === "" || email === "" || message === "") {
+
         formStatus.textContent = "Please fill in all fields!";
         formStatus.style.color = "red";
+
         return;
     }
 
-    // Check email format
+    // Validate email
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     if (!emailPattern.test(email)) {
+
         formStatus.textContent = "Please enter a valid email address!";
         formStatus.style.color = "red";
+
         return;
     }
 
-    // Display success message
+    // Success message
     formStatus.textContent =
         "Thank you! Your message has been submitted successfully.";
 
     formStatus.style.color = "green";
 
-    // Clear form fields
+    // Clear the form
     contactForm.reset();
+
 });
     
