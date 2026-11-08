@@ -1,92 +1,96 @@
-// ===============================
-// TO-DO LIST FUNCTIONALITY
-// ===============================
+document.addEventListener("DOMContentLoaded", function () {
 
-const todoForm = document.getElementById("todo-form");
-const taskInput = document.getElementById("task-input");
-const taskList = document.getElementById("task-list");
+    // =========================
+    // TO-DO LIST FUNCTIONALITY
+    // =========================
 
-todoForm.addEventListener("submit", function(event) {
-    event.preventDefault();
+    const todoForm = document.getElementById("todo-form");
+    const taskInput = document.getElementById("task-input");
+    const taskList = document.getElementById("task-list");
 
-    const taskText = taskInput.value.trim();
+    todoForm.addEventListener("submit", function (event) {
+        event.preventDefault();
 
-    if (taskText === "") {
-        alert("Please enter a task!");
-        return;
-    }
+        const taskText = taskInput.value.trim();
 
-    const li = document.createElement("li");
+        if (taskText === "") {
+            alert("Please enter a task!");
+            return;
+        }
 
-    const checkbox = document.createElement("input");
-    checkbox.type = "checkbox";
+        const li = document.createElement("li");
 
-    const span = document.createElement("span");
-    span.textContent = taskText;
+        const checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
 
-    checkbox.addEventListener("change", function() {
-        li.classList.toggle("completed", checkbox.checked);
+        const span = document.createElement("span");
+        span.textContent = taskText;
+
+        checkbox.addEventListener("change", function () {
+            li.classList.toggle("completed", checkbox.checked);
+        });
+
+        const deleteButton = document.createElement("button");
+        deleteButton.textContent = "Delete";
+        deleteButton.type = "button";
+        deleteButton.className = "delete-btn";
+
+        deleteButton.addEventListener("click", function () {
+            li.remove();
+        });
+
+        li.appendChild(checkbox);
+        li.appendChild(span);
+        li.appendChild(deleteButton);
+
+        taskList.appendChild(li);
+
+        taskInput.value = "";
     });
 
-    const deleteButton = document.createElement("button");
-    deleteButton.textContent = "Delete";
-    deleteButton.className = "delete-btn";
-    deleteButton.type = "button";
 
-    deleteButton.addEventListener("click", function() {
-        li.remove();
+    // =========================
+    // CONTACT FORM VALIDATION
+    // =========================
+
+    const contactForm = document.getElementById("contact-form");
+    const nameInput = document.getElementById("name");
+    const emailInput = document.getElementById("email");
+    const messageInput = document.getElementById("message");
+    const formStatus = document.getElementById("form-status");
+
+    contactForm.addEventListener("submit", function (event) {
+
+        event.preventDefault();
+
+        const name = nameInput.value.trim();
+        const email = emailInput.value.trim();
+        const message = messageInput.value.trim();
+
+        // Check empty fields
+        if (name === "" || email === "" || message === "") {
+            formStatus.textContent = "Please fill in all fields!";
+            formStatus.style.color = "red";
+            return;
+        }
+
+        // Check email format
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (!emailPattern.test(email)) {
+            formStatus.textContent = "Please enter a valid email address!";
+            formStatus.style.color = "red";
+            return;
+        }
+
+        // Show success message
+        formStatus.textContent = "Form submitted successfully!";
+        formStatus.style.color = "green";
+
+        // Clear form after successful validation
+        contactForm.reset();
+
     });
 
-    li.appendChild(checkbox);
-    li.appendChild(span);
-    li.appendChild(deleteButton);
-
-    taskList.appendChild(li);
-
-    taskInput.value = "";
 });
-
-
-// ===============================
-// CONTACT FORM VALIDATION
-// ===============================
-
-const contactForm = document.getElementById("contact-form");
-const nameInput = document.getElementById("name");
-const emailInput = document.getElementById("email");
-const messageInput = document.getElementById("message");
-const formStatus = document.getElementById("form-status");
-
-contactForm.addEventListener("submit", function(event) {
-
-    event.preventDefault();
-
-    const name = nameInput.value.trim();
-    const email = emailInput.value.trim();
-    const message = messageInput.value.trim();
-
-    // Check empty fields
-    if (name === "" || email === "" || message === "") {
-        formStatus.textContent = "Please fill in all fields!";
-        formStatus.style.color = "red";
-        return;
-    }
-
-    // Check email format
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-    if (!emailPattern.test(email)) {
-        formStatus.textContent = "Please enter a valid email address!";
-        formStatus.style.color = "red";
-        return;
-    }
-
-    // Success message
-    formStatus.textContent = "Form submitted successfully!";
-    formStatus.style.color = "green";
-
-    // Clear fields only after valid submission
-    contactForm.reset();
-
-});
-    
+        
