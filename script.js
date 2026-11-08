@@ -22,7 +22,7 @@ body {
     max-width: 500px;
     padding: 35px;
     border-radius: 15px;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
 }
 
 h1 {
@@ -157,7 +157,6 @@ hr {
 /* RESPONSIVE DESIGN */
 
 @media (max-width: 480px) {
-
     .container {
         padding: 20px;
     }
@@ -169,6 +168,4 @@ hr {
     #todo-form button {
         width: 100%;
     }
-
-        }
-    
+}
